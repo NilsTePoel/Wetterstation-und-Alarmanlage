@@ -1,0 +1,1152 @@
+[
+    {
+        "id": "ea8824735941fe1c",
+        "type": "subflow",
+        "name": "Helligkeit",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 280,
+                "y": 180,
+                "wires": [
+                    {
+                        "id": "5309f8550baace8e"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "2822d7baa441c222",
+        "type": "mqtt in",
+        "z": "ea8824735941fe1c",
+        "name": "",
+        "topic": "rpi_weather/output/brightness",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "c5ac020e7a9aa562",
+                "5309f8550baace8e"
+            ]
+        ]
+    },
+    {
+        "id": "c5ac020e7a9aa562",
+        "type": "ui_gauge",
+        "z": "ea8824735941fe1c",
+        "name": "",
+        "group": "36579396e4533dc9",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Aktuelle Helligkeit",
+        "label": "",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#141414",
+            "#00dc00",
+            "#dcdc00"
+        ],
+        "seg1": "20",
+        "seg2": "80",
+        "className": "",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5309f8550baace8e",
+        "type": "ui_chart",
+        "z": "ea8824735941fe1c",
+        "name": "",
+        "group": "36579396e4533dc9",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Helligkeitsverlauf",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Noch keine Daten vorhanden",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "e34ca017688f7afc"
+            ]
+        ]
+    },
+    {
+        "id": "e34ca017688f7afc",
+        "type": "change",
+        "z": "ea8824735941fe1c",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "brightness_history",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5c4f8086145c3ff",
+        "type": "inject",
+        "z": "ea8824735941fe1c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "brightness_history",
+        "payloadType": "global",
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "5309f8550baace8e"
+            ]
+        ]
+    },
+    {
+        "id": "36579396e4533dc9",
+        "type": "ui_group",
+        "name": "Helligkeit",
+        "tab": "f5cbcc32f588a42c",
+        "order": 4,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2de014f41fd70bec",
+        "type": "subflow",
+        "name": "Luftfeuchtigkeit",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 500,
+                "y": 260,
+                "wires": [
+                    {
+                        "id": "aebb8a3c8604a7a2"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "48c4132cd8d645ab",
+        "type": "mqtt in",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "topic": "rpi_weather/output/humidity",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 80,
+        "wires": [
+            [
+                "b76f431d35133144",
+                "88367d09d0ea3790"
+            ]
+        ]
+    },
+    {
+        "id": "88367d09d0ea3790",
+        "type": "ui_gauge",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "group": "aee62eb510ef7478",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Aktuelle Luftfeuchtigkeit",
+        "label": "",
+        "format": "{{value}} %",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00dc00",
+            "#dcdc00",
+            "#dc0000"
+        ],
+        "seg1": "60",
+        "seg2": "70",
+        "className": "",
+        "x": 510,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "aebb8a3c8604a7a2",
+        "type": "ui_chart",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "group": "aee62eb510ef7478",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Luftfeuchtigkeitsverlauf",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Noch keine Daten vorhanden",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 200,
+        "wires": [
+            [
+                "48e79bc5205c8472"
+            ]
+        ]
+    },
+    {
+        "id": "b76f431d35133144",
+        "type": "smooth",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "property": "payload",
+        "action": "low",
+        "count": "6",
+        "round": "",
+        "mult": "single",
+        "reduce": false,
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "aebb8a3c8604a7a2"
+            ]
+        ]
+    },
+    {
+        "id": "a3881f4205ea57f5",
+        "type": "comment",
+        "z": "2de014f41fd70bec",
+        "name": "Tiefpassfilter",
+        "info": "Der Tiefpassfilter ist notwendig, da der Luftfeuchtigkeitssensor manchmal falsche Werte liefert und Ausschläge im Diagramm vermieden werden sollen.",
+        "x": 290,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "429b116598c504b5",
+        "type": "inject",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "humidity_history",
+        "payloadType": "global",
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "aebb8a3c8604a7a2"
+            ]
+        ]
+    },
+    {
+        "id": "48e79bc5205c8472",
+        "type": "change",
+        "z": "2de014f41fd70bec",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "humidity_history",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 940,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aee62eb510ef7478",
+        "type": "ui_group",
+        "name": "Luftfeuchtigkeit",
+        "tab": "f5cbcc32f588a42c",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "19d141fce53762f3",
+        "type": "subflow",
+        "name": "Temperatur",
+        "info": "",
+        "category": "",
+        "in": [
+            {
+                "x": 260,
+                "y": 200,
+                "wires": [
+                    {
+                        "id": "66bc033dd04b02bf"
+                    }
+                ]
+            }
+        ],
+        "out": [],
+        "env": [],
+        "meta": {},
+        "color": "#DDAA99"
+    },
+    {
+        "id": "eee2f08ed94bea83",
+        "type": "mqtt in",
+        "z": "19d141fce53762f3",
+        "name": "",
+        "topic": "rpi_weather/output/temperature",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 80,
+        "wires": [
+            [
+                "8c66447eeb01648a",
+                "66bc033dd04b02bf"
+            ]
+        ]
+    },
+    {
+        "id": "8c66447eeb01648a",
+        "type": "ui_gauge",
+        "z": "19d141fce53762f3",
+        "name": "",
+        "group": "db2065f1f053315d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Aktuelle Temperatur",
+        "label": "",
+        "format": "{{value}} °C",
+        "min": "10",
+        "max": "40",
+        "colors": [
+            "#0000dc",
+            "#00dc00",
+            "#dc0000"
+        ],
+        "seg1": "16",
+        "seg2": "25",
+        "className": "",
+        "x": 500,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "66bc033dd04b02bf",
+        "type": "ui_chart",
+        "z": "19d141fce53762f3",
+        "name": "",
+        "group": "db2065f1f053315d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Temperaturverlauf",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Noch keine Daten vorhanden",
+        "dot": false,
+        "ymin": "10",
+        "ymax": "40",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "00f37a3784cd23aa"
+            ]
+        ]
+    },
+    {
+        "id": "00f37a3784cd23aa",
+        "type": "change",
+        "z": "19d141fce53762f3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temp_history",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 730,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3164c6154f869ab9",
+        "type": "inject",
+        "z": "19d141fce53762f3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "temp_history",
+        "payloadType": "global",
+        "x": 190,
+        "y": 140,
+        "wires": [
+            [
+                "66bc033dd04b02bf"
+            ]
+        ]
+    },
+    {
+        "id": "db2065f1f053315d",
+        "type": "ui_group",
+        "name": "Temperatur",
+        "tab": "f5cbcc32f588a42c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f5cbcc32f588a42c",
+        "type": "ui_tab",
+        "name": "Wetterstation",
+        "icon": "wb_cloudy",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "38da6674c754e25a",
+        "type": "tab",
+        "label": "Wetterstation",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b0d5b7b2d8042062",
+        "type": "file",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "filename": "/home/pi/weather_station/temperature_history.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 750,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de828c002d058e90",
+        "type": "ui_button",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "group": "6f23a288d6d67d85",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Verlauf exportieren",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Der Verlauf wurde auf dem Raspberry Pi gespeichert.",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "e22d7699df64d84f",
+                "f91c2b0e144b0b32",
+                "1f9cfe11851f3846",
+                "333becb7166dc431"
+            ]
+        ]
+    },
+    {
+        "id": "71a52d24b308db66",
+        "type": "file",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "filename": "/home/pi/weather_station/brightness_history.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 740,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c2d244ae7c880b75",
+        "type": "file",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "filename": "/home/pi/weather_station/humidity_history.json",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 740,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e22d7699df64d84f",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "temp_history",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 180,
+        "wires": [
+            [
+                "b0d5b7b2d8042062"
+            ]
+        ]
+    },
+    {
+        "id": "f91c2b0e144b0b32",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "humidity_history",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "c2d244ae7c880b75"
+            ]
+        ]
+    },
+    {
+        "id": "1f9cfe11851f3846",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "brightness_history",
+                "tot": "global"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "71a52d24b308db66"
+            ]
+        ]
+    },
+    {
+        "id": "333becb7166dc431",
+        "type": "ui_toast",
+        "z": "38da6674c754e25a",
+        "position": "top right",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Verlauf exportiert",
+        "name": "",
+        "x": 430,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e9241cd4a0ad94db",
+        "type": "ui_button",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "group": "6f23a288d6d67d85",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Verlauf löschen",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "Soll der Verlauf wirklich gelöscht werden?",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 440,
+        "wires": [
+            [
+                "0ab781ee6fbc38a8"
+            ]
+        ]
+    },
+    {
+        "id": "0ab781ee6fbc38a8",
+        "type": "ui_toast",
+        "z": "38da6674c754e25a",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": false,
+        "outputs": 1,
+        "ok": "Ja",
+        "cancel": "Nein",
+        "raw": false,
+        "className": "",
+        "topic": "Verlauf löschen?",
+        "name": "",
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "2694c70c8f4942d5"
+            ]
+        ]
+    },
+    {
+        "id": "2694c70c8f4942d5",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "temp_history",
+                "pt": "global",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "humidity_history",
+                "pt": "global",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "brightness_history",
+                "pt": "global",
+                "to": "[]",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "[]",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 440,
+        "wires": [
+            [
+                "c048306844d31f8b",
+                "13d6d6d3b473b58b",
+                "28807dafce97dd85"
+            ]
+        ]
+    },
+    {
+        "id": "f7e857e7f370de7a",
+        "type": "mqtt out",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "topic": "rpi_weather/input/lcd_enable",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "44401c5de20fa1b6",
+        "x": 960,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "bb972f862b518a7a",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 40,
+        "wires": [
+            [
+                "f7e857e7f370de7a"
+            ]
+        ]
+    },
+    {
+        "id": "a55ce3facc70971b",
+        "type": "ui_switch",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "label": "LCD eingeschaltet",
+        "tooltip": "",
+        "group": "6f23a288d6d67d85",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 430,
+        "y": 40,
+        "wires": [
+            [
+                "bb972f862b518a7a"
+            ]
+        ]
+    },
+    {
+        "id": "6892f38a7d1411cf",
+        "type": "mqtt in",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "topic": "rpi_weather/output/lcd_enabled",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 40,
+        "wires": [
+            [
+                "a55ce3facc70971b"
+            ]
+        ]
+    },
+    {
+        "id": "dd212d891be871a9",
+        "type": "mqtt out",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "topic": "rpi_weather/input/bar_enable",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "44401c5de20fa1b6",
+        "x": 960,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a6a5afc50bb5942a",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [
+                "dd212d891be871a9"
+            ]
+        ]
+    },
+    {
+        "id": "625d5123851c30bc",
+        "type": "ui_switch",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "label": "LED-Anzeige eingeschaltet",
+        "tooltip": "",
+        "group": "6f23a288d6d67d85",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 460,
+        "y": 100,
+        "wires": [
+            [
+                "a6a5afc50bb5942a"
+            ]
+        ]
+    },
+    {
+        "id": "8d07fabcc84c83ae",
+        "type": "mqtt in",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "topic": "rpi_weather/output/bar_enabled",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "625d5123851c30bc"
+            ]
+        ]
+    },
+    {
+        "id": "c048306844d31f8b",
+        "type": "subflow:19d141fce53762f3",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "x": 870,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "13d6d6d3b473b58b",
+        "type": "subflow:2de014f41fd70bec",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "x": 880,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "28807dafce97dd85",
+        "type": "subflow:ea8824735941fe1c",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "x": 860,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6f23a288d6d67d85",
+        "type": "ui_group",
+        "name": "Allgemein",
+        "tab": "f5cbcc32f588a42c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "44401c5de20fa1b6",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

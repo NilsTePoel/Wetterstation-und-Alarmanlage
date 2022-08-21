@@ -1,0 +1,640 @@
+[
+    {
+        "id": "80d8f6b164d1bd81",
+        "type": "tab",
+        "label": "Alarmanlage",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "664fd80da601c9f8",
+        "type": "ui_switch",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "label": "Alarmanlage eingeschaltet",
+        "tooltip": "",
+        "group": "8e202dc0f2064ff7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 460,
+        "y": 40,
+        "wires": [
+            [
+                "625feedcc0834dec"
+            ]
+        ]
+    },
+    {
+        "id": "38f58a19609f9435",
+        "type": "mqtt in",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "topic": "esp_alarm/output/ir_sensor",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 280,
+        "wires": [
+            [
+                "bff91ce191dc6961",
+                "a6fa016ddfead0e9"
+            ]
+        ]
+    },
+    {
+        "id": "344a210d50ba1d5f",
+        "type": "ui_toast",
+        "z": "80d8f6b164d1bd81",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Alarm",
+        "name": "",
+        "x": 650,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bff91ce191dc6961",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Die Lichtschranke hat einen Alarm ausgelöst.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 320,
+        "wires": [
+            [
+                "81b62dd192b4fd81",
+                "344a210d50ba1d5f"
+            ]
+        ]
+    },
+    {
+        "id": "d9ea8853861fe860",
+        "type": "ui_text",
+        "z": "80d8f6b164d1bd81",
+        "group": "f030699ccbfadeac",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Letzter Alarm",
+        "format": "{{msg.payload | date:\"dd.MM.yyyy, HH:mm:ss\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "a6fa016ddfead0e9",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "d9ea8853861fe860"
+            ]
+        ]
+    },
+    {
+        "id": "13cf799a971a2f38",
+        "type": "mqtt out",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "topic": "esp_alarm/input/enable",
+        "qos": "0",
+        "retain": "true",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "44401c5de20fa1b6",
+        "x": 950,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "625feedcc0834dec",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "true",
+                "fromt": "bool",
+                "to": "1",
+                "tot": "num"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "false",
+                "fromt": "bool",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 710,
+        "y": 40,
+        "wires": [
+            [
+                "13cf799a971a2f38"
+            ]
+        ]
+    },
+    {
+        "id": "d68cf07431567245",
+        "type": "simplepush",
+        "z": "80d8f6b164d1bd81",
+        "key": "",
+        "title": "Alarm",
+        "message": "",
+        "event": "",
+        "actions": "",
+        "actionTimeout": 180,
+        "password": "",
+        "salt": "",
+        "name": "",
+        "outputs": 1,
+        "x": 790,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a054a254fe3ea39",
+        "type": "inject",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "Noch kein Alarm",
+        "payloadType": "str",
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "d9ea8853861fe860"
+            ]
+        ]
+    },
+    {
+        "id": "189181b1138ea36a",
+        "type": "mqtt in",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "topic": "esp_alarm/output/reed_switch_1",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 520,
+        "wires": [
+            [
+                "5756afec6cf31759",
+                "f1df2eb7e2587a67"
+            ]
+        ]
+    },
+    {
+        "id": "6f2fd7c5da8f022e",
+        "type": "ui_toast",
+        "z": "80d8f6b164d1bd81",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "Alarm",
+        "name": "",
+        "x": 650,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5756afec6cf31759",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Der Reedschalter hat einen Alarm ausgelöst.",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 560,
+        "wires": [
+            [
+                "6f2fd7c5da8f022e",
+                "1404c6f292d0bb3d"
+            ]
+        ]
+    },
+    {
+        "id": "6a646364ec3e1f62",
+        "type": "ui_text",
+        "z": "80d8f6b164d1bd81",
+        "group": "a664540150ed8ce7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Letzter Alarm",
+        "format": "{{msg.payload | date:\"dd.MM.yyyy, HH:mm:ss\"}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 650,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "f1df2eb7e2587a67",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 480,
+        "wires": [
+            [
+                "6a646364ec3e1f62"
+            ]
+        ]
+    },
+    {
+        "id": "957d517dd2cf2513",
+        "type": "simplepush",
+        "z": "80d8f6b164d1bd81",
+        "key": "",
+        "title": "Alarm",
+        "message": "",
+        "event": "",
+        "actions": "",
+        "actionTimeout": 180,
+        "password": "",
+        "salt": "",
+        "name": "",
+        "outputs": 1,
+        "x": 790,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3b2478e2882801f3",
+        "type": "inject",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "Noch kein Alarm",
+        "payloadType": "str",
+        "x": 440,
+        "y": 440,
+        "wires": [
+            [
+                "6a646364ec3e1f62"
+            ]
+        ]
+    },
+    {
+        "id": "5c9e18c51efeef46",
+        "type": "mqtt in",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "topic": "esp_alarm/output/enabled",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "44401c5de20fa1b6",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 40,
+        "wires": [
+            [
+                "664fd80da601c9f8"
+            ]
+        ]
+    },
+    {
+        "id": "615842d944e360e1",
+        "type": "ui_switch",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "label": "Push-Benachrichtigungen",
+        "tooltip": "",
+        "group": "8e202dc0f2064ff7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 450,
+        "y": 100,
+        "wires": [
+            [
+                "8acecb87e47c17e4"
+            ]
+        ]
+    },
+    {
+        "id": "9bd61ba6b097d9cf",
+        "type": "inject",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0",
+        "topic": "",
+        "payload": "push_notifications_enabled",
+        "payloadType": "flow",
+        "x": 170,
+        "y": 100,
+        "wires": [
+            [
+                "615842d944e360e1"
+            ]
+        ]
+    },
+    {
+        "id": "81b62dd192b4fd81",
+        "type": "switch",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "property": "push_notifications_enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "d68cf07431567245"
+            ]
+        ]
+    },
+    {
+        "id": "8acecb87e47c17e4",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "push_notifications_enabled",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1404c6f292d0bb3d",
+        "type": "switch",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "property": "push_notifications_enabled",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 630,
+        "y": 580,
+        "wires": [
+            [
+                "957d517dd2cf2513"
+            ]
+        ]
+    },
+    {
+        "id": "8e202dc0f2064ff7",
+        "type": "ui_group",
+        "name": "Allgemein",
+        "tab": "fdbc1c08e89f1802",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "44401c5de20fa1b6",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f030699ccbfadeac",
+        "type": "ui_group",
+        "name": "Lichtschranke",
+        "tab": "fdbc1c08e89f1802",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a664540150ed8ce7",
+        "type": "ui_group",
+        "name": "Reedschalter",
+        "tab": "fdbc1c08e89f1802",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "fdbc1c08e89f1802",
+        "type": "ui_tab",
+        "name": "Alarmanlage",
+        "icon": "security",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
