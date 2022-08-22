@@ -36,4 +36,32 @@ Es wird die physikalische Nummerierung der Pins genutzt. I²C und die 1-Wire-Sch
 
 ## Alarmanlage
 
+### Funktionen
+
+Die Alarmanlage läuft auf einem D1 Mini-Mikrocontroller, an dem verschiedene Sensoren angeschlossen sind, die einen Einbruch erkennen sollen. Wird ein möglicher Einbruch erkannt, wird auf einem Piezo ein Warnton ausgegeben. Außerdem wird über MQTT eine Nachricht an das [Node-RED-Dashboard](#node-red-dashboard) gesendet.
+
+Es werden zwei Arten von Sensoren genutzt:
+
+* Infrarot-Reflexlichtschranken, mit denen Hindernisse erkannt werden können
+* Reedschalter, mit denen z. B. erkannt werden kann, ob ein Fenster geöffnet wurde
+
+Eine Status-LED zeigt an, ob die Alarmanlage aktiv ist.
+
+### Aufbau
+
+Die Pin-Belegung kann über die Konstanten in der Datei `Alarmanlage.ino` geändert werden.
+
+Möchte man zusätzliche Sensoren anschließen (z. B. einen zweiten Reedschalter), muss nur das Array `sensors` angepasst werden. Da hier mit Instanzen der abstrakten Klasse `Sensor` gearbeitet wird, können leicht neue Implementierungen für andere Sensortypen hinzugefügt werden.
+
+| Bauteil                                               | Pin-Belegung                                          |
+| ----------------------------------------------------- | ----------------------------------------------------- |
+| Infrarot-Reflexlichtschranke KY-033 mit Analogausgang | A0 (digitaler Ausgang des Sensors wird nicht genutzt) |
+| Reedschalter                                          | D2                                                    |
+| Aktiver Piezo-Summer                                  | D1                                                    |
+| Status-LED                                            | D7                                                    |
+
+### Verwendete Bibliotheken
+
+* [PubSubClient](https://github.com/knolleary/pubsubclient)
+
 ## Node-RED-Dashboard
