@@ -65,3 +65,35 @@ Möchte man zusätzliche Sensoren anschließen (z. B. einen zweiten Reedschalter
 * [PubSubClient](https://github.com/knolleary/pubsubclient)
 
 ## Node-RED-Dashboard
+
+Zusätzlich zu den Ausgaben am Raspberry Pi und am Mikrocontroller werden alle Daten auch über das MQTT-Protokoll an ein [Node-RED](https://nodered.org/)-Dashboard gesendet und können innerhalb des WLAN-Netzwerks über einen Webbrowser abgerufen werden.
+
+Neben Node-RED ist dafür auch ein MQTT-Broker wie z. B. [mosquitto](https://mosquitto.org/) nötig. Beide Softwarekomponenten können z. B. auf einem Raspberry Pi ausgeführt werden. Damit die Kommunikation funktioniert, muss dessen IP-Adresse in den Dateien `__main__.py` und `Alarmanlage.ino` hinterlegt werden. In der Datei `Alarmanlage.ino` müssen zusätzlich die Zugangsdaten würde das genutzte WLAN-Netzwerk eingetragen werden.
+
+### Wetterstation
+
+![Dashboard Wetterstation](Dashboard_Wetterstation.png)
+
+Das Dashboard der Wetterstation zeigt die aktuellen Messwerte zusammen mit einem Verlauf an.
+
+Im Abschnitt "Allgemein" können über zwei Schalter die lokalen Anzeigen am Raspberry Pi ausgeschaltet werden, wenn sie gerade nicht genutzt werden. Außerdem lässt sich der Verlauf als JSON-Datei exportieren oder auch löschen.
+
+Soll der Verlauf auch bei einem Neustart von Node-RED erhalten bleiben, muss man den folgenden Abschnitt in den Node-RED-Einstellungen ergänzen:
+
+```js
+contextStorage: {
+   default: {
+       module: "localfilesystem"
+   }
+}
+```
+
+### Alarmanlage
+
+![Dashboard Alarmanlage](Dashboard_Alarmanlage.png)
+
+Das Dashboard der Alarmanlage zeigt, wann ein Sensor zuletzt einen Alarm ausgelöst hat. Ist das Dashboard geöffnet, wenn gerade ein Alarm ausgelöst wird, erscheint zusätzlich ein Benachrichtigungsfenster. Außerdem hat man die Möglichkeit, die Alarmanlage abzuschalten.
+
+Ist die Option "Push-Benachrichtigungen" aktiviert, erhält man bei einem Alarm eine Benachrichtigung auf dem Smartphone. Dafür wird die App [simplepush](https://simplepush.io/) genutzt. Diese Option ist besonders nützlich, da man die Benachrichtigung auch dann erhält, wenn man nicht mit dem Heimnetzwerk verbunden ist.
+
+Hat man am Mikrocontroller neue Sensoren angeschlossen, muss natürlich auch die Benutzeroberfläche angepasst werden.
