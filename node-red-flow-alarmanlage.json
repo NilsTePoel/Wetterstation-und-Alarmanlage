@@ -33,7 +33,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 460,
+        "x": 640,
         "y": 40,
         "wires": [
             [
@@ -170,7 +170,7 @@
         "correl": "",
         "expiry": "",
         "broker": "44401c5de20fa1b6",
-        "x": 950,
+        "x": 1130,
         "y": 40,
         "wires": []
     },
@@ -204,7 +204,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
+        "x": 890,
         "y": 40,
         "wires": [
             [
@@ -424,7 +424,7 @@
         "name": "",
         "topic": "esp_alarm/output/enabled",
         "qos": "0",
-        "datatype": "auto-detect",
+        "datatype": "utf8",
         "broker": "44401c5de20fa1b6",
         "nl": false,
         "rap": true,
@@ -434,7 +434,7 @@
         "y": 40,
         "wires": [
             [
-                "664fd80da601c9f8"
+                "3a047e1288131e5c"
             ]
         ]
     },
@@ -565,6 +565,44 @@
         "wires": [
             [
                 "957d517dd2cf2513"
+            ]
+        ]
+    },
+    {
+        "id": "3a047e1288131e5c",
+        "type": "change",
+        "z": "80d8f6b164d1bd81",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 390,
+        "y": 40,
+        "wires": [
+            [
+                "664fd80da601c9f8"
             ]
         ]
     },

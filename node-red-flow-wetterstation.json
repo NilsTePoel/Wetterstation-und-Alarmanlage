@@ -876,7 +876,7 @@
         "correl": "",
         "expiry": "",
         "broker": "44401c5de20fa1b6",
-        "x": 960,
+        "x": 1120,
         "y": 40,
         "wires": []
     },
@@ -910,7 +910,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
+        "x": 870,
         "y": 40,
         "wires": [
             [
@@ -944,7 +944,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 430,
+        "x": 650,
         "y": 40,
         "wires": [
             [
@@ -959,7 +959,7 @@
         "name": "",
         "topic": "rpi_weather/output/lcd_enabled",
         "qos": "0",
-        "datatype": "auto-detect",
+        "datatype": "utf8",
         "broker": "44401c5de20fa1b6",
         "nl": false,
         "rap": true,
@@ -969,7 +969,7 @@
         "y": 40,
         "wires": [
             [
-                "a55ce3facc70971b"
+                "7cad0c74bfe3cdde"
             ]
         ]
     },
@@ -987,7 +987,7 @@
         "correl": "",
         "expiry": "",
         "broker": "44401c5de20fa1b6",
-        "x": 960,
+        "x": 1180,
         "y": 100,
         "wires": []
     },
@@ -1021,7 +1021,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 710,
+        "x": 930,
         "y": 100,
         "wires": [
             [
@@ -1055,7 +1055,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 460,
+        "x": 680,
         "y": 100,
         "wires": [
             [
@@ -1070,7 +1070,7 @@
         "name": "",
         "topic": "rpi_weather/output/bar_enabled",
         "qos": "0",
-        "datatype": "auto-detect",
+        "datatype": "utf8",
         "broker": "44401c5de20fa1b6",
         "nl": false,
         "rap": true,
@@ -1080,7 +1080,7 @@
         "y": 100,
         "wires": [
             [
-                "625d5123851c30bc"
+                "e8aa5863248d86e3"
             ]
         ]
     },
@@ -1110,6 +1110,82 @@
         "x": 860,
         "y": 500,
         "wires": []
+    },
+    {
+        "id": "e8aa5863248d86e3",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 100,
+        "wires": [
+            [
+                "625d5123851c30bc"
+            ]
+        ]
+    },
+    {
+        "id": "7cad0c74bfe3cdde",
+        "type": "change",
+        "z": "38da6674c754e25a",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "str",
+                "to": "true",
+                "tot": "bool"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "str",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 40,
+        "wires": [
+            [
+                "a55ce3facc70971b"
+            ]
+        ]
     },
     {
         "id": "6f23a288d6d67d85",
