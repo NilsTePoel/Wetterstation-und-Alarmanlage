@@ -25,7 +25,7 @@ bool sensorsEnabled = false;
 
 // WLAN/MQTT
 const char *ssid = "ssid_placeholder";
-const char *password = "password_palceholder";
+const char *password = "password_placeholder";
 
 const char *mqttBrokerIP = "ip_address_placeholder";
 const uint16_t mqttBrokerPort = 1883;
