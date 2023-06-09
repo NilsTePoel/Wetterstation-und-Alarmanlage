@@ -9,11 +9,12 @@ class LCDUI(UI):
 
     def __init__(self, weather_station, lcd, unit_button):
         self.__lcd = lcd
-        self.__lcd.clear()
 
         self.__second_line_mode = LCDUI.__SHOW_DATE
 
         self.__unit_button = unit_button
+        
+        self.disable()
 
         UI.__init__(self, weather_station)
 

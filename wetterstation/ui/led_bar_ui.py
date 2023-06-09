@@ -11,6 +11,8 @@ class LEDBarUI(UI):
         self.__led_bar_mode = LEDBarUI.__BRIGHTNESS
 
         self.__bar_mode_button = bar_mode_button
+        
+        self.disable()
 
         UI.__init__(self, weather_station)
 
